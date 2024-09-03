@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<head>
+   <html lang="en">
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Site Metas -->
+   <title>Induko</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- site icon -->
+   {% load static %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+   <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png" />
+   <!-- Bootstrap core CSS -->
+   <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+   <!-- FontAwesome Icons core CSS -->
+   <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+   <!-- Custom animate styles for this template -->
+   <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="{% static 'style.css' %}" rel="stylesheet">
+   <!-- Responsive styles for this template -->
+   <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+   <!-- Colors for this template -->
+   <link href="{% static 'css/colors.css' %}" rel="stylesheet">
+   <!-- light box gallery -->
+   <link href="{% static 'css/ekko-lightbox.css' %}" rel="stylesheet">
+   <style>
+      #loginForm,
+      #registerForm {
+         animation: fadeInUp 1s;
+      }
+
+      @keyframes fadeInUp {
+         from {
+            opacity: 0;
+            transform: translate3d(0, 100%, 0);
+         }
+
+         to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+         }
+      }
+
+      /* Form Wrapper Animation */
+      .form_wrapper {
+         animation: fadeIn 1s ease-in-out;
+         background-color: #f9f9f9;
+         border-radius: 8px;
+         padding: 20px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Fade In Animation */
+      @keyframes fadeIn {
+         from {
+            opacity: 0;
+            transform: translateY(-20px);
+         }
+
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      /* General Form Styling */
+      /* General Form Styling */
+      .form-control {
+         background-color: transparent;
+         /* Remove background color */
+         border: none;
+         /* Remove border */
+         border-bottom: 1px solid #ddd;
+         /* Add a bottom border for distinction */
+         border-radius: 0;
+         /* Remove rounded corners */
+         padding: 10px;
+         /* Padding for better text spacing */
+         margin-bottom: 15px;
+         /* Spacing between form elements */
+         box-shadow: none;
+         /* Remove any shadow effect */
+         box-sizing: border-box;
+         /* Ensures padding and border are included in total width/height */
+      }
+
+      /* Remove background of dropdown and input-group */
+      .input-group,
+      .dropdown-toggle {
+         background-color: transparent;
+         /* Remove background color */
+         border: none;
+         /* Remove border */
+      }
+
+      /* Style for input group */
+      .input-group-prepend .input-group-text {
+         background-color: transparent;
+         /* Matching background color */
+         color: #007bff;
+         /* Icon color */
+         border: none;
+         /* Remove border */
+      }
+
+      /* Icon size */
+      .input-group-text i {
+         font-size: 1.2em;
+      }
+
+      /* Ensure input group matches the design */
+      .input-group input[type="file"] {
+         border: none;
+         /* Remove border */
+      }
+
+      /* Form Group Alignment */
+      .form-group {
+         display: flex;
+         align-items: center;
+         margin-bottom: 15px;
+         /* Space between form groups */
+      }
+
+      .form-group label {
+         flex: 0 0 150px;
+         /* Fixed width for labels */
+         margin-right: 15px;
+         /* Space between label and input */
+         text-align: right;
+         /* Aligns label text to the right */
+      }
+
+      .form-group .form-control {
+         flex: 1;
+         /* Makes input fields take up the remaining space */
+      }
+
+      /* Dropdown Menu Styling */
+      .dropdown-menu {
+         border: none;
+         /* Remove border */
+         background-color: transparent;
+         /* Matching dropdown background color */
+      }
+
+      /* Button Styling */
+      .button-contactForm {
+         border-radius: 5px;
+         background-color: #007bff;
+         /* Button background color */
+         color: #fff;
+         /* Button text color */
+         border: none;
+         padding: 10px 20px;
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+      }
+
+      .button-contactForm:hover {
+         background-color: #0056b3;
+         /* Darker shade on hover */
+      }
+
+      /* Ensure the slider banner takes up the full viewport height */
+      .slider_banner {
+         position: relative;
+         width: 100%;
+         height: 100vh;
+         /* Full viewport height */
+         overflow: hidden;
+         /* Hide any overflow */
+      }
+
+      .slider_banner img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         /* Cover the container while maintaining aspect ratio */
+         object-position: center;
+         /* Center the image */
+      }
+
+      .slide_cont {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         /* Center content vertically and horizontally */
+      }
+
+      /* Basic reset */
+      body {
+         margin: 0;
+         padding: 0;
+      }
+
+      /* Header styles */
+      /* Ensure the navbar takes full width and aligns items correctly */
+      .navbar {
+         display: flex;
+         justify-content: space-between;
+         /* Space out the brand and nav items */
+         align-items: center;
+         /* Align items vertically */
+      }
+
+      .navbar-brand {
+         margin: 0;
+         /* Remove default margin */
+         font-size: 24px;
+         /* Adjust font size as needed */
+      }
+
+      .navbar-nav {
+         display: flex;
+         align-items: center;
+         /* Align items vertically */
+      }
+
+      .navbar-nav .nav-item {
+         margin-left: 20px;
+         /* Space between nav items */
+      }
+
+      .navbar-toggler {
+         display: none;
+         /* Hide the toggle button if not needed */
+      }
+
+      .nav-link img {
+         width: 20px;
+         /* Adjust icon size if needed */
+         height: auto;
+         /* Maintain aspect ratio */
+      }
+   </style>
+</head>
+<style>
+   #logoutButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      animation: fadeInUp 1s;
+      z-index: 1000; /* Ensure it's above other content */
+   }
+
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translate3d(0, 100%, 0);
+      }
+
+      to {
+         opacity: 1;
+         transform: translate3d(0, 0, 0);
+      }
+   }
+</style>
+
+<body id="home_page" class="home_page">
+   <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+         <div class="container">
+            <a class="navbar-brand" href="#" id="learn">LearnFlow</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu"
+               aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="float-left">Menu</span>
+               <span class="float-right"><i class="fa fa-bars"></i> <i class="fa fa-close"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="cloapediamenu">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="about.html" style="color: black;">Members</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="about.html" style="color: black;">About</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" data-toggle="modal" data-target="#authModal"
+                        style="color: black;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+   </header>
+   <!-- section -->
+   <section class="main_full banner_section_top">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="full">
+               <div class="slider_banner">
+                  <img class="img-responsive" src="{% static 'images/pexels-photo-3807741.webp' %}" alt="#" />
+                  <div class="slide_cont">
+                     <!-- Form Section -->
+                     <div class="form_section plus_padding">
+                        <div class="container">
+                           <div class="row">
+                              <div class="col-lg-12 text_align_center">
+                                 <div class="form_wrapper">
+                                    <form class="form-contact comment_form" action="/course/add" method="POST" enctype="multipart/form-data" id="commentForm">
+                                       {% csrf_token %}
+                                       <div class="row">
+                                          <div class="col-sm-6">
+                                             <div class="form-group">
+                                                <label for="name">Course:</label>
+                                                <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="Course Name">
+                                             </div>
+                                          </div>
+                                          <div class="col-sm-6">
+                                             <div class="form-group">
+                                                   <label for="classNumber">Class Number:</label>
+                                                   <input type="text" id="classNumber" name="class_number" class="form-control" placeholder="Enter class number" required>
+                                             </div>
+                                          </div>
+
+                                          </div>
+                                          <div class="col-12">
+                                             <div class="form-group">
+                                                <label for="description">Description:</label>
+                                                <textarea class="form-control w-100" name="description" id="description"
+                                                   cols="30" rows="9" placeholder="Description"></textarea>
+                                             </div>
+                                          </div>
+                                          <div class="col-12">
+                                             <div class="form-group">
+                                                <label for="upload">Upload Course:</label>
+                                                <div class="input-group">
+                                                   <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-upload"></i></span>
+                                                   </div>
+                                                   <input type="file" class="form-control" id="upload" name="upload">
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group text-center">
+                                          <button type="submit"
+                                             class="button button-contactForm btn_1 boxed-btn">Add</button>
+                                       </div>
+                                    </form>
+
+
+                                 </div>
+                                 <!-- End of Form Section -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <a href="/logout" id="logoutButton" class="btn btn-danger btn-sm">
+      Logout
+   </a>
+   <a href="/courses"> Go back</a>
+
+   <!-- Modal for Login and Register -->
+   <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="authModalLabel">Login / Register</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <!-- Login Form -->
+               <div id="loginForm" class="container mt-5">
+                  <form action="/login" method="POST" class="shadow p-4 rounded bg-light">
+                     {% csrf_token %}
+                     <h3 class="text-center mb-4">Sign In</h3>
+                     <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                     </div>
+                     <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                  </form>
+                  <p class="text-center mt-3">Don’t have an account? <a href="#registerForm" class="dont-hav-acc">Sign
+                        Up</a></p>
+               </div>
+
+               <!-- Registration Form -->
+               {% if messages %}
+               <ul class="messages">
+                  {% for message in messages %}
+                  <li style="color: red;" {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                  </li>
+                  {% endfor %}
+               </ul>
+               {% endif %}
+
+               <div id="registerForm" class="container mt-5" style="display: none;">
+                  <form action="/register" method="POST" class="shadow p-4 rounded bg-light">
+                     {% csrf_token %}
+                     <h3 class="text-center mb-4">Sign Up</h3>
+                     <div class="form-group">
+                        <label for="role">Role</label>
+                        <select name="role" id="role" class="form-control" required>
+                           <option value="student">Student</option>
+                           <option value="teacher">Teacher</option>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" name="firstname" class="form-control" placeholder="Enter first name"
+                           required>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" name="lastname" class="form-control" placeholder="Enter last name" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                     </div>
+                     <div class="form-group">
+                        <input type="password" name="copassword" class="form-control" placeholder="Confirm password"
+                           required>
+                     </div>
+                     <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                  </form>
+                  <p class="text-center mt-3">Already have an account? <a href="#loginForm" class="dont-hav-acc">Sign
+                        In</a></p>
+               </div>
+               <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                     var loginLink = document.querySelector('.dont-hav-acc[href="#registerForm"]');
+                     var registerLink = document.querySelector('.dont-hav-acc[href="#loginForm"]');
+
+                     if (loginLink && registerLink) {
+                        loginLink.addEventListener('click', function (e) {
+                           e.preventDefault();
+                           document.getElementById('loginForm').style.display = 'none';
+                           document.getElementById('registerForm').style.display = 'block';
+                        });
+
+                        registerLink.addEventListener('click', function (e) {
+                           e.preventDefault();
+                           document.getElementById('loginForm').style.display = 'block';
+                           document.getElementById('registerForm').style.display = 'none';
+                        });
+                     }
+                  });
+                  document.addEventListener('DOMContentLoaded', () => {
+                     const dropdownButton = document.getElementById('dropdownMenuButton');
+                     const dropdownMenu = document.querySelector('.dropdown-menu');
+
+                     dropdownButton.addEventListener('click', () => {
+                        dropdownMenu.classList.toggle('show');
+                     });
+
+                     // Close dropdown if clicked outside
+                     document.addEventListener('click', (event) => {
+                        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                           dropdownMenu.classList.remove('show');
+                        }
+                     });
+                  });
+                  $(document).ready(function () {
+                     $('.dropdown-item').click(function () {
+                        var classValue = $(this).data('value');
+                        $('#classInput').val(classValue);
+                        $('#dropdownMenuButton').text('Class ' + classValue);
+                     });
+                  });
+                  document.querySelectorAll('.dropdown-item').forEach(item => {
+                     item.addEventListener('click', function () {
+                        document.getElementById('classInput').value = this.getAttribute('data-value');
+                     });
+                  });
+            
+               </script>
+               <!-- ================================================== -->
+               <script src="{% static 'js/jquery.min.js' %}"></script>
+               <script src="{% static 'js/tether.min.js' %}"></script>
+               <script src="{% static 'js/bootstrap.min.js' %}"></script>
+               <script src="{% static 'js/parallax.js' %}"></script>
+               <script src="{% static 'js/animate.js' %}"></script>
+               <script src="{% static 'js/ekko-lightbox.js' %}"></script>
+               <script src="{% static 'js/custom.js' %}"></script>
+
+               <script src="{% static 'js/popper.min.js' %}"></script>
+               <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+               <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

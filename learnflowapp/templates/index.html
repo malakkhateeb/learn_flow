@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<head>
+    <html lang="en">
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Site Metas -->
+    <title>Induko</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png" />
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <!-- FontAwesome Icons core CSS -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- Custom animate styles for this template -->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <!-- Responsive styles for this template -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!-- Colors for this template -->
+    <link href="{% static 'css/colors.css' %}" rel="stylesheet">
+    <!-- light box gallery -->
+    <link href="{% static 'css/ekko-lightbox.css' %}" rel="stylesheet">
+
+    <style>
+        #loginForm,
+        #registerForm {
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            /* Space out the brand and nav items */
+            align-items: center;
+            /* Align items vertically */
+        }
+
+        .navbar-brand {
+            margin: 0;
+            /* Remove default margin */
+            font-size: 24px;
+            /* Adjust font size as needed */
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 20px;
+            /* Space between nav items */
+        }
+
+        .navbar-toggler {
+            display: none;
+            /* Hide the toggle button if not needed */
+        }
+
+        .nav-link img {
+            width: 20px;
+            /* Adjust icon size if needed */
+            height: auto;
+            /* Maintain aspect ratio */
+        }
+        #logoutButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            animation: fadeInUp 1s;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+        
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        #searchContainer {
+            position: relative;
+            width: 250px;
+        }
+        
+        #searchInput {
+            border-radius: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+        
+        #searchResults {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #searchResults a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        #searchResults a:hover {
+            background-color: #f8f8f8;
+        }
+        /* styles.css */
+
+
+        .banner_section_top {
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        
+        .slider_banner {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider_banner img {
+            width: 100%;
+            height: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .slide_cont {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            animation: slideUp 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .slide_cont {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: azure; /* Text color */
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Semi-transparent background for better readability */
+            padding: 20px; /* Add padding inside the container */
+            border-radius: 10px; /* Optional: Rounded corners */
+        }
+        
+        .slide_cont h1, 
+        .slide_cont p {
+            margin: 0 0 10px 0; /* Add margin at the bottom of elements */
+        }
+        #searchResults {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; /* Adjust this as needed */
+            text-align: center; /* To center the content within the div */
+        }
+
+    </style>
+</head>
+
+<body id="home_page" class="home_page">
+    <!-- header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#" id="learn">LearnFlow</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu"
+                    aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="float-left">Menu</span>
+                    <span class="float-right"><i class="fa fa-bars"></i> <i class="fa fa-close"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="cloapediamenu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" style="color: black;">Members</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" style="color: black;">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#authModal"
+                                style="color: black;">Login</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="searchIcon">
+                                <img src="{% static 'images/search_icon.png' %}" alt="Search Icon" />
+                            </a>
+                        </li>
+                        <li class="nav-item" id="searchContainer" style="display: none;">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search courses...">
+                            <!-- This will display the course info -->
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <a href="/logout" id="logoutButton" class="btn btn-danger btn-sm">
+        Logout
+    </a>
+    <!-- end header -->
+    <!-- section -->
+    <section class="main_full banner_section_top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="full">
+                    <div class="slider_banner">
+                        <img class="img-responsive"
+                            src="{% static 'images/pexels-photo-289737.webp' %}"
+                            alt="Banner Image" />
+                        <div class="slide_cont">
+                            <h1 style="color: azure;">Welcome to LearnFlow</h1>
+                            <br>
+                            <div id="searchResults"></div>
+                            <p style="color: azure;">Your journey to knowledge starts here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end section -->
+
+
+    <!-- about section -->
+    <section class="layout_padding section about_dottat">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text_align_center">
+                    <div class="full heading_s1">
+                        <h2>About</h2>
+                    </div>
+                    <div class="full">
+                        <p class="large">Welcome to Learn Flow, a dynamic and user-friendly learning platform aimed at
+                            transforming the educational experience for school students and teachers. Our mission is to
+                            create a collaborative and interactive environment that supports the diverse needs of
+                            students from the first to the seventh class.
+
+                            where teachers can add and upload courses, Grades, description to their students
+
+                            while students can downloads the courses and add ratings to their teachers to improve the
+                            communications between teachers and students</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="about_img margin_top_30  text_align_center">
+                        <!-- <img src="{% static 'images/ab_img.png' %}" alt="#" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end about section -->
+
+    <!-- section -->
+    <section class="layout_padding section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text_align_center">
+                    <div class="full heading_s1">
+                        <h2>Our Courses</h2>
+                    </div>
+                    <div class="full">
+                        <p class="large">At Learn Flow, we offer a wide range of courses to cater to the diverse
+                            learning needs of our students. Our platform allows teachers to add comprehensive and
+                            engaging courses across various subjects.
+                            Here are some of the key subjects that our teachers can add:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4 text_align_center">
+                    <div class="cours">
+                        <img class="img-responsive" src="{% static 'images/cour1.png' %}" alt="#" />
+                    </div>
+                    <h3>Mathematics</h3>
+                    <p>Mathematics is the foundation of many scientific disciplines and essential for developing
+                        problem-solving skills.
+                        Our math courses cover topics from basic arithmetic to advanced calculus,
+                        ensuring students at all levels can find the support they need</p>
+                </div>
+
+                <div class="col-md-4 text_align_center">
+                    <div class="cours">
+                        <img class="img-responsive" src="{% static 'images/cour2.png' %}" alt="#" />
+                    </div>
+                    <h3>Science</h3>
+                    <p>Science courses aim to spark curiosity and foster an understanding of the natural world</p>
+                </div>
+
+                <div class="col-md-4 text_align_center">
+                    <div class="cours">
+                        <img class="img-responsive" src="{% static 'images/cour3.png' %}" alt="#" />
+                    </div>
+                    <h3>English</h3>
+                    <p>Our English courses help students improve their reading, writing, and communication skills</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal for Login and Register -->
+    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Login / Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Form -->
+                    <div id="loginForm" class="container mt-5">
+                        <form action="/login" method="POST" class="shadow p-4 rounded bg-light">
+                            {% csrf_token %}
+                            <h3 class="text-center mb-4">Sign In</h3>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Enter email"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" placeholder="Password"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        </form>
+                        <p class="text-center mt-3">Don’t have an account? <a href="#registerForm"
+                                class="dont-hav-acc">Sign Up</a></p>
+                    </div>
+
+                    <!-- Registration Form -->
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li style="color: red;" {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message
+                            }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <div id="registerForm" class="container mt-5" style="display: none;">
+                        <form action="/register" method="POST" class="shadow p-4 rounded bg-light">
+                            {% csrf_token %}
+                            <h3 class="text-center mb-4">Sign Up</h3>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select name="role" id="role" class="form-control" required>
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="firstname" class="form-control" placeholder="Enter first name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="lastname" class="form-control" placeholder="Enter last name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Enter email"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" placeholder="Password"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="copassword" class="form-control"
+                                    placeholder="Confirm password" required>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                        </form>
+                        <p class="text-center mt-3">Already have an account? <a href="#loginForm"
+                                class="dont-hav-acc">Sign In</a></p>
+                    </div>
+                
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var loginLink = document.querySelector('.dont-hav-acc[href="#registerForm"]');
+                            var registerLink = document.querySelector('.dont-hav-acc[href="#loginForm"]');
+
+                            if (loginLink && registerLink) {
+                                loginLink.addEventListener('click', function (e) {
+                                    e.preventDefault();
+                                    document.getElementById('loginForm').style.display = 'none';
+                                    document.getElementById('registerForm').style.display = 'block';
+                                });
+
+                                registerLink.addEventListener('click', function (e) {
+                                    e.preventDefault();
+                                    document.getElementById('loginForm').style.display = 'block';
+                                    document.getElementById('registerForm').style.display = 'none';
+                                });
+                            }
+                        });
+                        $(document).ready(function() {
+                            $('#searchIcon').click(function(e) {
+                                e.preventDefault();
+                                $('#searchContainer').slideToggle();  // Toggle the search input with animation
+                                $('#searchInput').focus();  // Focus on the input field when it appears
+                            });
+                        
+                            $('#searchInput').on('keyup', function() {
+                                let query = $(this).val().trim();
+                        
+                                if (query.length > 0) {  // Start searching as soon as user types
+                                    $.ajax({
+                                        url: '{% url "search_courses" %}',  // URL should point to your Django view that handles search
+                                        type: 'GET',
+                                        data: {
+                                            'query': query
+                                        },
+                                        success: function(data) {
+                                            $('#searchResults').html('');  // Clear previous results
+                                            if (data.length > 0) {
+                                                data.forEach(function(course) {
+                                                    $('#searchResults').append(`
+                                                        <div class="course-info">
+                                                            <h5>${course.name}</h5>
+                                                            <p>${course.description}</p>
+                                                            <p>Class: ${course.class_number}</p>
+                                                            <p>Teacher: ${course.teacher}</p>
+                                                        </div>
+                                                        <hr>
+                                                    `);
+                                                });
+                                            } else {
+                                                $('#searchResults').html('<div>No courses found</div>');
+                                            }
+                                        },
+                                        error: function() {
+                                            $('#searchResults').html('<div>An error occurred while searching</div>');
+                                        }
+                                    });
+                                } else {
+                                    $('#searchResults').html('');  // Clear results if input is empty
+                                }
+                            });
+                        });
+                        
+                    </script>
+
+        <!-- ==================================================  -->
+                    <script src="{% static 'js/jquery.min.js' %}"></script>
+                    <script src="{% static 'js/tether.min.js' %}"></script>
+                    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+                    <script src="{% static 'js/parallax.js' %}"></script>
+                    <script src="{% static 'js/animate.js' %}"></script>
+                    <script src="{% static 'js/ekko-lightbox.js' %}"></script>
+                    <script src="{% static 'js/custom.js' %}"></script>
+
+                    <script src="{% static 'js/popper.min.js' %}"></script>
+
+
+
+</body>
+
+</html>
